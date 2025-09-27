@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CacaoInteligente - Revolucionamos el cultivo de cacao con IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;600;700&family=Raleway:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ESTILOS GENERALES */
+        :root {
+            --primary: #2E7D32; /* Verde cacao */
+            --secondary: #FF9800; /* Naranja */
+            --accent: #795548; /* Marrón cacao */
+            --light: #F5F5F5;
+            --dark: #333333;
+            --text: #424242;
+            --hover-color: #FF5722; /* Naranja intenso para hover */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        section {
+            padding: 5rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn:hover {
+            background: #1B5E20;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #F57C00;
+        }
+        
+        /* HEADER CON EFECTOS HOVER MEJORADOS */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        header.scrolled {
+            padding: 5px 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            font-family: 'Raleway', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo-icon {
+            margin-right: 12px;
+            font-size: 2.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(15deg);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            padding: 8px 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--hover-color);
+            transform: scale(1.15);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--hover-color), var(--secondary));
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 2px;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .nav-links a:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .mobile-menu:hover {
+            transform: scale(1.1);
+            color: var(--primary);
+        }
+        
+        /* HERO SECTION */
+        #hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(46, 125, 50, 0.9)), url('https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 12rem 2rem 8rem;
+            position: relative;
+        }
+        
+        #hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-weight: 800;
+        }
+        
+        #hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        /* PROBLEM SECTION */
+        #problem {
+            background: var(--light);
+        }
+        
+        .problem-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .problem-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+            transition: height 0.3s;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .problem-card:hover:before {
+            height: 8px;
+            background: var(--hover-color);
+        }
+        
+        .problem-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .problem-card:hover h3 {
+            color: var(--hover-color);
+        }
+        
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            transition: all 0.4s;
+        }
+        
+        .problem-card:hover .problem-icon {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--hover-color);
+        }
+        
+        /* SOLUTION SECTION */
+        .solution-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            color: var(--primary);
+            min-width: 60px;
+            transition: all 0.4s;
+        }
+        
+        .feature:hover .feature-icon {
+            transform: scale(1.2);
+            color: var(--hover-color);
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .feature:hover .feature-content h3 {
+            color: var(--hover-color);
+        }
+        
+        /* PRODUCT SECTION */
+        #product {
+            background: var(--light);
+        }
+        
+        .product-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .app-feature {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .app-feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .app-feature h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .app-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+        }
+        
+        /* BUSINESS MODEL SECTION */
+        #business-model {
+            background: var(--light);
+        }
+        
+        .pricing-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .plan {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .plan:hover {
+            transform: translateY(-5px);
+        }
+        
+        .plan.featured {
+            border: 2px solid var(--secondary);
+            transform: scale(1.05);
+        }
+        
+        .plan.featured:before {
+            content: 'RECOMENDADO';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .plan h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .plan ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .plan li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .plan li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* MARKET SECTION */
+        #market {
+            background: var(--light);
+        }
+        
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat h3 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .strategy {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* TEAM SECTION */
+        #team {
+            background: var(--light);
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .member {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--light);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+            border: 3px solid var(--primary);
+        }
+        
+        .member h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .member p {
+            font-size: 0.9rem;
+        }
+        
+        .social-links-member {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 10px;
+        }
+        
+        .social-links-member a {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links-member a:hover {
+            color: var(--secondary);
+        }
+        
+        /* TESTIMONIALS SECTION */
+        #testimonials {
+            background: var(--light);
+        }
+        
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            margin: 0 1rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .testimonial-text:before, .testimonial-text:after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary);
+            position: absolute;
+            opacity: 0.3;
+        }
+        
+        .testimonial-text:before {
+            top: -20px;
+            left: -10px;
+        }
+        
+        .testimonial-text:after {
+            bottom: -40px;
+            right: -10px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* CONTACT SECTION */
+        #contact {
+            background: linear-gradient(rgba(46, 125, 50, 0.9), rgba(46, 125, 50, 0.8)), url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        #contact h2 {
+            color: white;
+        }
+        
+        #contact h2:after {
+            background: var(--secondary);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            text-align: left;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            font-family: 'Raleway', sans-serif;
+            text-transform: uppercase;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* BACK TO TOP BUTTON */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: #1B5E20;
+            transform: translateY(-3px);
+        }
+        
+        /* WHATSAPP BUTTON */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-button:hover {
+            background: #128C7E;
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* CHATBOT MEJORADO */
+        .chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .chatbot-container.active {
+            display: flex;
+        }
+        
+        .chatbot-header {
+            background: var(--primary);
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .chatbot-header h3 {
+            margin: 0;
+            color: white;
+            font-size: 1.1rem;
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 10px 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 280px;
+        }
+        
+        .message {
+            max-width: 85%;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+        
+        .bot-message {
+            background: #f0f0f0;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 10px 15px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        
+        .chatbot-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            margin-left: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .chatbot-trigger {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, #FF9800, #FF5722);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+        }
+        
+        .chatbot-trigger:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .quick-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        
+        .quick-question {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 12px;
+            padding: 6px 10px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .quick-question:hover {
+            background: #c8e6c9;
+            transform: translateX(3px);
+        }
+        
+        .new-questions-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 8px;
+            text-align: center;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .new-questions-btn:hover {
+            background: #F57C00;
+            transform: translateY(-2px);
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+            
+            .nav-links a:hover {
+                transform: scale(1.05);
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-stats {
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                padding: 0.5rem 1rem;
+            }
+            
+            .chatbot-container {
+                width: 90%;
+                height: 65%;
+                right: 5%;
+                bottom: 10%;
+            }
+            
+            .whatsapp-button {
+                left: 20px;
+                bottom: 20px;
+            }
+            
+            .chatbot-trigger {
+                right: 20px;
+                bottom: 100px;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .back-to-top {
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/593984325613?text=Hola,%20me%20interesa%20saber%20más%20sobre%20CacaoInteligente" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Chatbot Trigger -->
+    <div class="chatbot-trigger">
+        <i class="fas fa-seedling"></i>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>Asistente CacaoInteligente</h3>
+            <button class="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages">
+            <div class="message bot-message">
+                ¡Hola! Soy Coco, tu asistente virtual 🌱
+            </div>
+            <div class="message bot-message">
+                ¿En qué puedo ayudarte hoy?
+            </div>
+            <div class="quick-questions" id="initial-questions">
+                <div class="quick-question" data-question="precio">💲 Precios y planes</div>
+                <div class="quick-question" data-question="funcionamiento">📱 ¿Cómo funciona?</div>
+                <div class="quick-question" data-question="plagas">🐛 Plagas detectadas</div>
+                <div class="quick-question" data-question="demo">🎯 Solicitar demo</div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Escribe tu pregunta...">
+            <button><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <button class="new-questions-btn" id="new-questions-btn">🔄 Otras preguntas</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">🌱</span>
+                <span>CacaoInteligente</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#problem">Problema</a></li>
+                <li><a href="#solution">Solución</a></li>
+                <li><a href="#product">Producto</a></li>
+                <li><a href="#business-model">Modelo</a></li>
+                <li><a href="#market">Mercado</a></li>
+                <li><a href="#team">Equipo</a></li>
+                <li><a href="#contact" class="btn">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu">☰</div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1>Revolucionamos el cultivo de cacao con Inteligencia Artificial</h1>
+            <p>Diagnóstico preciso de plagas, recomendaciones inteligentes y aumento de productividad para pequeños y medianos productores</p>
+            <a href="#contact" class="btn">Solicitar Demo Gratuita</a>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">+95%</span>
+                    <span>Precisión en diagnóstico</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">-30%</span>
+                    <span>Reducción de costos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+20%</span>
+                    <span>Aumento de productividad</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="container">
+            <h2>El cacao ecuatoriano enfrenta una crisis silenciosa</h2>
+            <div class="problem-cards">
+                <div class="problem-card">
+                    <div class="problem-icon">📉</div>
+                    <h3>30% de pérdidas anuales</h3>
+                    <p>Por plagas como moniliasis y escoba de bruja detectadas demasiado tarde</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💸</div>
+                    <h3>40% más en agroquímicos</h3>
+                    <p>Aplicaciones incorrectas y preventivas generan gastos innecesarios</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🌍</div>
+                    <h3>Calidad inconsistente</h3>
+                    <p>Dificultad para acceder a mercados premium y precios justos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution">
+        <div class="container">
+            <h2>La primera plataforma de agricultura de precisión para cacao</h2>
+            <div class="solution-features">
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-content">
+                        <h3>Diagnóstico con IA</h3>
+                        <p>Analiza fotos de mazorcas y hojas para detectar plagas en segundos con más del 95% de precisión</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚠️</div>
+                    <div class="feature-content">
+                        <h3>Alertas tempranas</h3>
+                        <p>Predice brotes epidemiológicos con 7 días de anticipación usando datos climáticos locales</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-content">
+                        <h3>Recomendaciones precisas</h3>
+                        <p>Dosis exactas y momentos óptimos para cada tratamiento, reduciendo costos hasta en 30%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="product">
+        <div class="container">
+            <h2>Nuestra plataforma integral</h2>
+            <div class="product-demo">
+                <div class="app-feature">
+                    <div class="app-image">📲</div>
+                    <h3>App Móvil Intuitiva</h3>
+                    <p>Funciona offline - Diseñada específicamente para productores - Interfaz en español sencilla</p>
+                </div>
+                <div class="app-feature">
+                    <div class="app-image">💻</div>
+                    <h3>Dashboard Web Completo</h3>
+                    <p>Gestión integral de fincas - Historial de tratamientos - Reportes automáticos - Análisis de tendencias</p>
+                </div>
+                <div class="app-feature">
+                    <div class="app-image">🚁</div>
+                    <h3>Servicio de Drones Opcional</h3>
+                    <p>Mapas de salud de plantaciones - Análisis multiespectral - Monitoreo de grandes extensiones</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section id="business-model">
+        <div class="container">
+            <h2>Modelo de suscripción accesible</h2>
+            <div class="pricing-plans">
+                <div class="plan">
+                    <h3>Plan Básico</h3>
+                    <p class="price">$5/hectárea/mes</p>
+                    <ul>
+                        <li>App móvil con diagnóstico de plagas</li>
+                        <li>Recomendaciones básicas de tratamiento</li>
+                        <li>Soporte por correo electrónico</li>
+                        <li>Reportes mensuales básicos</li>
+                    </ul>
+                    <a href="#contact" class="btn">Comenzar</a>
+                </div>
+                <div class="plan featured">
+                    <h3>Plan Premium</h3>
+                    <p class="price">$12/hectárea/mes</p>
+                    <ul>
+                        <li>Todo lo incluido en el Plan Básico</li>
+                        <li>4 vuelos de dron anuales con análisis</li>
+                        <li>Análisis de suelo y recomendaciones avanzadas</li>
+                        <li>Soporte prioritario telefónico</li>
+                        <li>Dashboard web premium</li>
+                    </ul>
+                    <a href="#contact" class="btn">Comenzar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section id="market">
+        <div class="container">
+            <h2>Mercado objetivo claro y en crecimiento</h2>
+            <div class="market-stats">
+                <div class="stat">
+                    <h3>120,000+</h3>
+                    <p>Hectáreas de cacao en Ecuador</p>
+                </div>
+                <div class="stat">
+                    <h3>15,000+</h3>
+                    <p>Pequeños y medianos productores</p>
+                </div>
+                <div class="stat">
+                    <h3>$500M+</h3>
+                    <p>Mercado potencial anual</p>
+                </div>
+            </div>
+            <div class="strategy">
+                <p><strong>Estrategia inicial:</strong> Asociaciones de productores en Guayas, Los Ríos y El Oro, expandiéndonos progresivamente a otras regiones cacaoteras del país.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <h2>Nuestro equipo fundador</h2>
+            <div class="team-members">
+                <div class="member">
+                    <div class="member-img">👩‍🌾</div>
+                    <h3>María González</h3>
+                    <p><strong>Ingeniera Agrónoma</strong><br>15 años de experiencia en cultivo de cacao - Ex-INLAP</p>
+                    <div class="social-links-member">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-img">👨‍💻</div>
+                    <h3>Carlos Mendoza</h3>
+                    <p><strong>Científico de Datos</strong><br>PhD en IA - Experiencia en visión por computadora</p>
+                    <div class="social-links-member">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-img">👨‍💼</div>
+                    <h3>Gustavo Berrones</h3>
+                    <p><strong>Director Comercial</strong><br>Especialista en agrotech y desarrollo de negocios</p>
+                    <div class="social-links-member">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://wa.me/593984325613" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <p class="testimonial-text">CacaoInteligente ha revolucionado nuestra forma de trabajar. Ahora detectamos la moniliasis antes de que cause daños graves.</p>
+                    <p class="testimonial-author">- Juan Pérez, Asociación de Cacaoteros de Guayas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>¿Listo para transformar su cultivo de cacao?</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> informacion@cacointeligente.ec</p>
+                    <p><i class="fas fa-phone"></i> +593 98 432 5613 (Gustavo Berrones)</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Guayaquil, Ecuador</p>
+                    <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 - 17:00</p>
+                    <div class="social-links" style="justify-content: flex-start; margin-top: 2rem;">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://wa.me/593984325613" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="hectares">¿Cuántas hectáreas de cacao cultiva?</label>
+                        <input type="text" id="hectares" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje adicional</label>
+                        <textarea id="message" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Solicitar Demo Gratuita</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">CacaoInteligente</div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 CacaoInteligente. Todos los derechos reservados. | Desarrollado por Gustavo Berrones</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const backToTop = document.querySelector('.back-to-top');
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('active');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        // Back to top functionality
+        document.querySelector('.back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const hectares = document.getElementById('hectares').value;
+            
+            // In a real application, you would send this data to a server
+            // For this demo, we'll just show a success message
+            alert(`¡Gracias ${name}! Hemos recibido su solicitud de demo. Nos pondremos en contacto pronto al ${phone || email}.`);
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Simple testimonial slider
+        const testimonials = [
+            {
+                text: "CacaoInteligente ha revolucionado nuestra forma de trabajar. Ahora detectamos la moniliasis antes de que cause daños graves.",
+                author: "Juan Pérez, Asociación de Cacaoteros de Guayas"
+            },
+            {
+                text: "Gracias a las recomendaciones de la app, hemos reducido el uso de agroquímicos en un 35% sin afectar la productividad.",
+                author: "María Rodríguez, Finca La Esperanza"
+            },
+            {
+                text: "La plataforma es muy fácil de usar, incluso para quienes no estamos familiarizados con la tecnología.",
+                author: "Carlos López, Productor Independiente"
+            }
+        ];
+        
+        let currentTestimonial = 0;
+        const testimonialElement = document.querySelector('.testimonial');
+        
+        function changeTestimonial() {
+            testimonialElement.style.opacity = 0;
+            
+            setTimeout(() => {
+                testimonialElement.innerHTML = `
+                    <p class="testimonial-text">${testimonials[currentTestimonial].text}</p>
+                    <p class="testimonial-author">- ${testimonials[currentTestimonial].author}</p>
+                `;
+                
+                testimonialElement.style.opacity = 1;
+                
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            }, 500);
+        }
+        
+        // Change testimonial every 5 seconds
+        setInterval(changeTestimonial, 5000);
+        
+        // Chatbot functionality - MEJORADA
+        const chatbotTrigger = document.querySelector('.chatbot-trigger');
+        const chatbotContainer = document.querySelector('.chatbot-container');
+        const chatbotClose = document.querySelector('.chatbot-close');
+        const chatbotInput = document.querySelector('.chatbot-input input');
+        const chatbotSend = document.querySelector('.chatbot-input button');
+        const chatbotMessages = document.querySelector('.chatbot-messages');
+        const newQuestionsBtn = document.getElementById('new-questions-btn');
+        
+        // Estado del chatbot (abierto/cerrado)
+        let chatbotOpen = false;
+        
+        // Abrir/cerrar chatbot
+        function toggleChatbot() {
+            chatbotOpen = !chatbotOpen;
+            if (chatbotOpen) {
+                chatbotContainer.classList.add('active');
+                chatbotInput.focus();
+            } else {
+                chatbotContainer.classList.remove('active');
+            }
+        }
+        
+        // Abrir chatbot al hacer clic en el trigger
+        chatbotTrigger.addEventListener('click', toggleChatbot);
+        
+        // Cerrar chatbot al hacer clic en la X
+        chatbotClose.addEventListener('click', toggleChatbot);
+        
+        // Cerrar chatbot al hacer clic en el header (para minimizar)
+        document.querySelector('.chatbot-header').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleChatbot();
+            }
+        });
+        
+        // Chatbot responses
+        const chatbotResponses = {
+            "hola": "¡Hola! Soy Coco, tu asistente virtual de CacaoInteligente 🌱<br>¿En qué puedo ayudarte hoy?",
+            
+            "precio": "💲 <strong>Tenemos dos planes:</strong><br>" +
+                     "• <strong>Básico:</strong> $5/hectárea/mes<br>" +
+                     "• <strong>Premium:</strong> $12/hectárea/mes<br>" +
+                     "¿Te interesa alguno en particular?",
+            
+            "cuesta": "💲 <strong>Nuestros planes:</strong><br>" +
+                     "• <strong>Básico:</strong> $5/hectárea/mes<br>" +
+                     "• <strong>Premium:</strong> $12/hectárea/mes<br>" +
+                     "¿Te interesa alguno en particular?",
+            
+            "funcionamiento": "📱 <strong>Así funciona:</strong><br>" +
+                            "1. Tomas una foto de las mazorcas<br>" +
+                            "2. IA analiza la imagen en segundos<br>" +
+                            "3. Recibes diagnóstico preciso<br>" +
+                            "4. Recomendaciones específicas<br>",
+            
+            "app": "📱 <strong>Nuestra app:</strong><br>" +
+                  "• Interfaz en español y fácil de usar<br>" +
+                  "• Funciona sin internet<br>" +
+                  "• Diagnóstico en segundos<br>" +
+                  "• Historial de consultas<br>",
+            
+            "plagas": "🐛 <strong>Plagas detectadas:</strong><br>" +
+                     "• Moniliasis (Mancha de agua)<br>" +
+                     "• Escoba de bruja<br>" +
+                     "• Phytophthora<br>" +
+                     "• Deficiencias nutricionales<br>",
+            
+            "demo": "🎯 <strong>¡Solicita tu demo!</strong><br>" +
+                   "1. Completa el formulario de contacto<br>" +
+                   "2. Escríbenos por WhatsApp<br>" +
+                   "3. Te contactamos en 24 horas<br>" +
+                   "Demo gratuita y sin compromiso",
+            
+            "gracias": "¡De nada! 😊 ¿Algo más en lo que pueda ayudarte?",
+            
+            "adiós": "¡Hasta luego! 👋<br>Recuerda que estamos para ayudarte.",
+            
+            "contacto": "📞 <strong>Contacto:</strong><br>" +
+                       "• WhatsApp: +593 98 432 5613<br>" +
+                       "• Email: informacion@cacointeligente.ec<br>" +
+                       "• Formulario web<br>"
+        };
+        
+        // Default response
+        const defaultResponse = "🤔 No estoy seguro de entender.<br>Puedo ayudarte con: precios, funcionamiento, plagas o demo.";
+        
+        // Preguntas adicionales
+        const additionalQuestions = [
+            "¿Tienen descuentos para asociaciones?",
+            "¿Funciona en todos los tipos de cacao?",
+            "¿Necesito internet para usar la app?",
+            "¿Ofrecen capacitación?"
+        ];
+        
+        // Send message function
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message === "") return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            
+            // Clear input
+            chatbotInput.value = "";
+            
+            // Bot response (simulate thinking)
+            setTimeout(() => {
+                let response = defaultResponse;
+                const lowerMessage = message.toLowerCase();
+                
+                // Check for keywords in the message
+                for (const keyword in chatbotResponses) {
+                    if (lowerMessage.includes(keyword)) {
+                        response = chatbotResponses[keyword];
+                        break;
+                    }
+                }
+                
+                addMessage(response, 'bot');
+            }, 800);
+        }
+        
+        // Add message to chat
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            messageElement.innerHTML = text;
+            
+            chatbotMessages.appendChild(messageElement);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        // Show new questions
+        function showNewQuestions() {
+            // Remove existing quick questions
+            const existingQuestions = document.querySelectorAll('.quick-question');
+            existingQuestions.forEach(q => q.remove());
+            
+            // Add new questions
+            const questionsContainer = document.createElement('div');
+            questionsContainer.className = 'quick-questions';
+            
+            additionalQuestions.forEach(question => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'quick-question';
+                questionElement.textContent = question;
+                questionElement.addEventListener('click', function() {
+                    chatbotInput.value = question;
+                    sendMessage();
+                });
+                questionsContainer.appendChild(questionElement);
+            });
+            
+            chatbotMessages.appendChild(questionsContainer);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        // Send message on button click
+        chatbotSend.addEventListener('click', sendMessage);
+        
+        // Send message on Enter key
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Quick questions functionality
+        document.querySelectorAll('.quick-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const questionText = this.textContent.replace(/[💲📱🐛🎯] /g, '');
+                chatbotInput.value = questionText;
+                sendMessage();
+            });
+        });
+        
+        // New questions button
+        newQuestionsBtn.addEventListener('click', showNewQuestions);
+    </script>
+</body>
+</html>
